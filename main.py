@@ -86,7 +86,7 @@ while running:
             sleep(2)
 
     #Rendering Fonts
-    SCREEN.blit(font.render(f"X: {player.x}", True, (0, 0, 0)), (0, 25))
+    #   SCREEN.blit(font.render(f"X: {player.x}", True, (0, 0, 0)), (0, 25))
     SCREEN.blit(font.render(f"Score: {score}", True, (0,0,0)), (0, 0))
 
     pygame.display.update()
