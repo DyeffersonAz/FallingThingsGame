@@ -13,6 +13,9 @@ pygame.display.set_caption("Falling Things Game")
 #Setting Images
 ground_img = pygame.image.load("ground.png")
 
+#Fonts
+debug_font = pygame.font.Font(pygame.font.get_default_font(), 32)
+
 #Player Variables
 player = Player(400, 450, 0)
 
@@ -39,6 +42,15 @@ while running:
                 player.acc_x = 0
 
     player.x += player.acc_x
+
+    #Blocking Player Off-screen
+    if player.x > 750:
+        player.x = 750
+    elif player.x < 0:
+        player.x = 0
+
+    #Rendering Fonts
+    SCREEN.blit(debug_font.render(f"X: {player.x}", True, (0, 0, 0)), (0, 0))
 
     SCREEN.blit(ground_img, (0, 500))
     player.draw(SCREEN)
