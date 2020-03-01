@@ -14,8 +14,8 @@ pygame.display.set_caption("Falling Things Game")
 #Setting Images
 ground_img = pygame.image.load("ground.png")
 
-#Fonts
-debug_font = pygame.font.Font(pygame.font.get_default_font(), 32)
+#Font
+font = pygame.font.Font(pygame.font.get_default_font(), 32)
 
 #Player
 player = Player(400, 450, 0)
@@ -28,6 +28,9 @@ obstacles = []
 for obstacle in range(0, num_of_obstacles):
     obstacle = Obstacle()
     obstacles.append(obstacle)
+
+#Score
+score = 0
 
 running = True
 #Game Loop
@@ -68,10 +71,13 @@ while running:
     SCREEN.blit(ground_img, (0, 500))
     player.draw(SCREEN)
 
+    score += 1
+
     for obstacle in obstacles:
         obstacle.draw(SCREEN)
 
     #Rendering Fonts
-    SCREEN.blit(debug_font.render(f"X: {player.x}", True, (0, 0, 0)), (0, 0))
+    SCREEN.blit(font.render(f"X: {player.x}", True, (0, 0, 0)), (0, 25))
+    SCREEN.blit(font.render(f"Score: {score}", True, (0,0,0)), (0, 0))
 
     pygame.display.update()

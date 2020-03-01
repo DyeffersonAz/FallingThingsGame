@@ -11,7 +11,7 @@ class Obstacle:
         """Initializing the obstacle randomly in the x and 0 in y"""
         self.x = randint(0, 800)
         self.y = 0
-        self.y_acc = randint(1, 4)
+        self.y_acc = randint(1, 3)
 
     def draw(self, SCREEN):
         """Drawing obstacle as a circle"""
