@@ -3,6 +3,7 @@
 import pygame
 
 from player import Player
+from obstacle import Obstacle
 
 pygame.init()
 
@@ -16,9 +17,17 @@ ground_img = pygame.image.load("ground.png")
 #Fonts
 debug_font = pygame.font.Font(pygame.font.get_default_font(), 32)
 
-#Player Variables
+#Player
 player = Player(400, 450, 0)
 
+#Obstacle(s)
+num_of_obstacles = 5
+
+obstacles = []
+
+for obstacle in range(0, num_of_obstacles):
+    obstacle = Obstacle()
+    obstacles.append(obstacle)
 
 running = True
 #Game Loop
@@ -49,9 +58,20 @@ while running:
     elif player.x < 0:
         player.x = 0
 
-    #Rendering Fonts
-    SCREEN.blit(debug_font.render(f"X: {player.x}", True, (0, 0, 0)), (0, 0))
+    for obstacle in obstacles:
+        obstacle.y += obstacle.y_acc
+
+        if obstacle.y > 600:
+            obstacle.y = 0
+            obstacle.reset_x()
 
     SCREEN.blit(ground_img, (0, 500))
     player.draw(SCREEN)
+
+    for obstacle in obstacles:
+        obstacle.draw(SCREEN)
+
+    #Rendering Fonts
+    SCREEN.blit(debug_font.render(f"X: {player.x}", True, (0, 0, 0)), (0, 0))
+
     pygame.display.update()
