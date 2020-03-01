@@ -2,6 +2,8 @@
 
 import pygame
 
+from time import sleep
+
 from player import Player
 from obstacle import Obstacle
 
@@ -64,7 +66,7 @@ while running:
     for obstacle in obstacles:
         obstacle.y += obstacle.y_acc
 
-        if obstacle.y > 600:
+        if obstacle.y > 475:
             obstacle.y = 0
             obstacle.reset_x()
 
@@ -75,6 +77,13 @@ while running:
 
     for obstacle in obstacles:
         obstacle.draw(SCREEN)
+
+        if obstacle.collide(player):
+            for j in obstacles:
+                j.reset_x()
+            
+            score = 0
+            sleep(2)
 
     #Rendering Fonts
     SCREEN.blit(font.render(f"X: {player.x}", True, (0, 0, 0)), (0, 25))

@@ -1,6 +1,7 @@
 """Defines the obstacle which the player needs to avoid"""
 
 from random import randint
+from math import sqrt
 
 import pygame
 
@@ -19,3 +20,7 @@ class Obstacle:
     
     def reset_x(self):
         self.x = randint(0, 800)
+    
+    def collide(self, obj):
+        return (sqrt(pow((self.x - obj.x), 2) + pow((self.y - obj.y), 2))) < 25
+
